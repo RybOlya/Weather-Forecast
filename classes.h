@@ -8,59 +8,66 @@ public:
 	float temp;
 	int humid;
 	int windSpeed;
-	enum type { SUNNY, CLOUDY, RAINY, FOGGY, SNOWY };
-	void getDay() {
-		std::cin >> day;
-		std::cin >> city;
-		std::cin >> country;
-		std::cin >> temp;
-		std::cin >> humid;
-		std::cin >> windSpeed;
-		//return day
-	}
-	void display() {
-		std::cout << day << " " << city << " " << country << " " << temp << " " << humid << " " << windSpeed << std::endl;
-	}
 };
-//class WeatherCalendar : public Weather
-//{
-//public:
-//	int findMaxTemprature(int day)
+//void isLvivWeather(int humidity,enum type)
 //	{
-//		int d, k = 0, l = 0;
-//		//cout << size;
-//		std::cout << "\n Enter day: ";
-//		std::cin >> d;
-//		for (int i = 0; i < size; i++)
-//		{
-//			if (d != wday[i])
-//			{
-//				k++;
 //
-//				//cout << " Not enough data! ";
-//				//findMaxTemprature(wday);
-//			}
-//			l += 2;
-//			//cout << k;
-//
-//		}
-//		if (k == size)
-//		{
-//			std::cout << " Not enough data! ";
-//			findMaxTemprature();
-//
-//		}
-//		else if (k > 1)
-//		{
-//			for (int i = 0; i < size; i++)
-//			{
-//
-//				std::cout << wday[i] << " ";
-//
-//			}
-//		}
-//
-//		//cout << " " << k << endl;
-//		return 0;
 //	}
-//};
+
+
+enum vibe { SUNNY, CLOUDY, RAINY, FOGGY, WINDY };
+std::string enum_to_string(vibe type)
+{
+	switch (type) {
+	case SUNNY:
+		return"SUNNY";
+	case CLOUDY:
+		return "CLOUDY";
+	case RAINY:
+		return "RAINY";
+	case FOGGY:
+		return "FOGGY";
+	case WINDY:
+		return "WINDY";
+	default:
+		return "Invalid weather";
+	}
+
+}
+class WeatherCalendar : public Weather
+{
+public:
+	int FindMaxtempature(int d,int pos, std::vector<Weather>& duplicate)
+{
+	int max;
+	//Weather maximum = *max_element(duplicate.begin(), duplicate.end());
+	//std::cout << maximum;
+	if (duplicate[0].temp < duplicate[pos].temp)
+	{
+		duplicate[0].temp = duplicate[pos].temp;
+		max = duplicate[0].temp;
+
+	}
+	else
+		max = duplicate[pos].temp;
+		int s = duplicate.size();
+		for (const auto& duplicateElement : duplicate)
+		{
+			//std::cout << "Max weather is " << /*std::to_string(duplicateElement) <<*/ duplicate[0].temp << std::endl;
+		}
+		return max;
+	//}
+}
+	//void findMaxtemprature(int d, vector<Weather>& infolist)
+	//{
+
+	//	for (int i = 0; i < 6; i++)
+	//	{
+
+	//		std::cout << day << " ";
+
+	//	}
+
+	////cout << " " << k << endl;
+	//}
+};
