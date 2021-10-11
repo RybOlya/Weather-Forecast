@@ -1,13 +1,8 @@
 #include <iostream>
-#include <stdio.h>
 #include <string>
-#include <iomanip>
-#include <vector>
 #include <algorithm>
 #include <array>
 #include <vector>
-#include <map>
-#include <utility>
 #include "classes.h"
 
 const unsigned int N = 7;
@@ -16,57 +11,6 @@ bool comparator(const Weather& lhs, const Weather& rhs) {
 	return lhs.day < rhs.day;
 }
 int findIndex(const std::vector<Weather>& arr, int low, int high, int d) {
-	//if (low == high)
-	//{
-	//	dup = low;
-	//}
-	//else
-	//{
-	//	int mid = (low + high)/2;
-	//	std::cout << low<<" " << high<<" "<<mid <<" " << arr[mid].day << "\n";
-	//// for (auto i = 0; i < arr.size() - 1; ++i) {
-	//	 if (arr[mid].day < mid)
-	//	 {
-	//		 std::cout << " mid - 1";
-	//		 dup = findIndex(arr, low, mid - 1);
-	//	 }
-	//	 else
-	//	 {
-	//		 std::cout << " mid + 1";
-	//		 dup = findIndex(arr, mid + 1, high);
-	//		 std::cout << " dub "<<dup<<"\n";
-	//	 }
-	//		
-	//}
-	//
-	//return dup;
-	//if (low == high)
-	//{
-	//	dup = low;
-	//}
-	//else
-	//{
-	//	int middle = (low + high)/2;
-	//	if (arr[middle].day < middle)
-	//	{
-	//		dup = findIndex(arr, low, middle - 1);
-
-	//	}
-	//	else
-	//	{
-	//		dup = findIndex(arr, middle + 1, high);
-	//	}
-	//}
-
-	//return dup;
-			 // If mid element is not at its position that means
-			 // the repeated element is in left
-			 
-		 
-	// }
-	// If mid is at proper position then repeated one is in
-	// right.
-	//return findIndex(arr, mid + 1, high);
 	for (auto i = 0; i < arr.size()-1; ++i) {
 		if(d == arr[arr.size() - 1].day)
 			return arr.size() - 1;
@@ -78,17 +22,16 @@ int findIndex(const std::vector<Weather>& arr, int low, int high, int d) {
 			}
 				return i;
 		}
-		//return (std::adjacent_find((arr.begin(), (arr.end()));
 	}
 	return -1;
 }
-// pass it to sort:
 int main()
 {
 	int i = 0;
 	WeatherCalendar we;
 	std::vector<Weather> infolist; //vector used to store Weather class objects
 	Weather info;
+	Weather ob;
 	std::array <int, N> day = { 12, 13, 2, 5, 12, 23, 5 };
 	std::array <std::string, N> city = { "Lviv","Amsterdam","London","Lisabon","Frankfurt","Dublin" , "Madrid"};
 	std::array <std::string, N> country = { "Ukraine","Netherlands","UK","Portugal","Germany","Ireland" ,"Spain"};
@@ -108,10 +51,9 @@ int main()
 		infolist.push_back(info);
 	}
 	int s = infolist.size();
-	for (int i = 0; i < s; i++)
+	for (const Weather& n : infolist)
 	{
-
-		std::cout << " " << infolist[i].day << " " << infolist[i].city << " " << infolist[i].country << " " << infolist[i].temp << " " << infolist[i].humid << " " << infolist[i].windSpeed << std::endl;
+		std::cout << n.day << " " << n.city << " " << n.country << " " << n.temp << " " << n.humid << " " << n.windSpeed << " " << std::endl;
 	}
 	std::sort(infolist.begin(), infolist.end(), &comparator);
 	for (; i < s; i++)
@@ -129,39 +71,23 @@ int main()
 			type[i] = enum_to_string(WINDY);
 		else
 			type[i] = enum_to_string(CLOUDY);
-		std::cout << "\n " << infolist[i].day << " " << infolist[i].city << " " << infolist[i].country << " " << infolist[i].temp << " " << infolist[i].humid << " " << infolist[i].windSpeed << " " << type[i] << std::endl;
 	}
-	int d, k = 0, l = 0;
-	for (const Weather& n : infolist) {
-		std:: cout << n.city << "  ";
+	std::cout << "\n Sorted records: \n";
+	for (const Weather& n : infolist)
+	{
+		std::cout << n.day << " " << n.city << " " << n.country << " " << n.temp << " " << n.humid << " " << n.windSpeed << " " << std::endl;
 	}
+	int d;
 	std::cout << "\n Enter day: ";
 	std::cin >> d;
-	//ob.isLvivWeather(humid, type);
-	
+
 	int pos = findIndex(infolist, 0 , N,d);
 		if (pos != -1)
 		{
-			std::cout << "Max weather on " << d << " day is " << we.FindMaxtempature(d, pos, infolist)<< std::endl;
+			std::cout << " Max weather on " << d << " day is " << we.FindMaxtempature(d, pos, infolist)<< std::endl;
+			 ob.IsLvivWeather(d, infolist[pos].humid, type[pos]);
 		}
 		else
-			std::cout << "Not enough data!" << std::endl;
-	//}
-	//if (std::find(day.begin(), day.end(), d) != day.end())
-	//{
-	auto max = *max_element(temp.begin(), temp.end());
-	//std::cout << max;
-	auto it = std::unique(day.begin(), day.end() )!= day.end();
-	//auto it = std::adjacent_find(day.begin(), day.end());
-	//if (it == day.end())
-	//{	
-	//	
-
-	//}
-		
-
-	//}
-	//else
-	//cout << k;
+			std::cout << " Not enough data!" << std::endl;
 	return 0;
 }
