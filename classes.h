@@ -8,12 +8,14 @@ public:
 	float temp;
 	int humid;
 	int windSpeed;
+	void IsLvivWeather(int d, int humidity,std::string typ)
+	{
+		if ( typ == "RAINY" && humidity > 80)
+			std::cout << " The typical day in Lviv\n";
+		else
+			std::cout << " You are lucky, man\n";
+	}
 };
-//void isLvivWeather(int humidity,enum type)
-//	{
-//
-//	}
-
 
 enum vibe { SUNNY, CLOUDY, RAINY, FOGGY, WINDY };
 std::string enum_to_string(vibe type)
@@ -37,37 +39,16 @@ std::string enum_to_string(vibe type)
 class WeatherCalendar : public Weather
 {
 public:
-	int FindMaxtempature(int d,int pos, std::vector<Weather>& duplicate)
-{
-	int max;
-	//Weather maximum = *max_element(duplicate.begin(), duplicate.end());
-	//std::cout << maximum;
-	if (duplicate[0].temp < duplicate[pos].temp)
+	int FindMaxtempature(int d, int pos, std::vector<Weather>& duplicate)
 	{
-		duplicate[0].temp = duplicate[pos].temp;
-		max = duplicate[0].temp;
-
-	}
-	else
-		max = duplicate[pos].temp;
-		int s = duplicate.size();
-		for (const auto& duplicateElement : duplicate)
+		int max;
+		if (duplicate[0].temp < duplicate[pos].temp)
 		{
-			//std::cout << "Max weather is " << /*std::to_string(duplicateElement) <<*/ duplicate[0].temp << std::endl;
+			duplicate[0].temp = duplicate[pos].temp;
+			max = duplicate[0].temp;
 		}
+		else
+			max = duplicate[pos].temp;
 		return max;
-	//}
-}
-	//void findMaxtemprature(int d, vector<Weather>& infolist)
-	//{
-
-	//	for (int i = 0; i < 6; i++)
-	//	{
-
-	//		std::cout << day << " ";
-
-	//	}
-
-	////cout << " " << k << endl;
-	//}
+	}
 };
